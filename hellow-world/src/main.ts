@@ -1,3 +1,6 @@
+// main entry point to angular application
+// when running npm start/ng serve the excution comes to main.ts
+// then bootstrap/kick-start our AppModule
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
