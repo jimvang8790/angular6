@@ -4,10 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { TestComponent } from './test/test.component'; // this will import automatically with cli 
 
+// this declarations array contains all the components usedby the application
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent // whis will import when running cli
   ],
   imports: [
     BrowserModule
