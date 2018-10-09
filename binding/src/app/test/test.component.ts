@@ -24,11 +24,34 @@ import { Component, OnInit } from '@angular/core';
     <div>
       <h2>Property Binding</h2>
       <p>Welcome {{name}}</p>
-      <input type="text" value="Jimmi">
+      <!-- binding to the ID property of this input element hence property binding -->
+      <input [id]="myId" type="text" placeholder="enter text">
+      <!-- can use interpolation to bind to the ID of the element -->
+      <input id="{{myId}}" type="text" placeholder="enter text">
+      <!-- So why use property binding? B.c. interpolation can only work with string values and there are 
+      HTML properties that are boolean properties that may need to sometimes bind to -->
+      <input disabled="false" id="{{myId}}" type="text" placeholder="enter text"> <!-- even if disable = false, input is still disable-->
+      <!-- by default disable = true, interpolation won't work on boolean, property binding will work for boolean -->
+      <input [disabled]="isDisabled" id="{{myId}}" type="text" placeholder="enter text">  
+      <input bind-disabled="isDisabled" id="{{myId}}" type="text" placeholder="enter text"> <!-- another way of property binding -->  
+    </div>
+
+    <!-- Class Binding -->
+    <div>
+      <h2>Class Binding</h2>
+      <p class="text-success">Codevolution</p>
     </div>
   `,
   styles: [`
-  
+    .text-success {
+      color: green;
+    }
+    .text-danger {
+      color: red;
+    }
+    .text-special {
+      font-style: italic;
+    }
   `]
 })
 export class TestComponent implements OnInit {
@@ -39,6 +62,13 @@ export class TestComponent implements OnInit {
   public siteUrl = window.location.href;
   // public is similar to var, where var name = 'Jim Vang';
   public name = 'Jim Vang';
+
+  // Property Binding
+  public myId = 'testId';
+  public isDisabled = true;
+
+  // Class Binding
+
 
   constructor() { }
 
