@@ -37,3 +37,9 @@
             class contains data properties and methods used to control the logic of the view, ex: can have a method to show/hide and element based on the value of a property
         3) Metadata which is the information that angular decides if the particular is    an angular component or just a regular class. Metadata is defind using a       decorator which is a feature in typescript and a decorator is just a           function that provides information about the class attached to it. And for     component we use the component decorator 
 
+## Attribute vs Property
+    - Attribute and Properties are not the same
+    - Attribute = define by HTML
+    - Properties = define by DOM (Document Object Model)
+    - Attribute initialize DOM properties and then they are done. Attribute values cannot change once they    are initialized
+    - Properties values however can change
