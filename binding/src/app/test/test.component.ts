@@ -40,6 +40,14 @@ import { Component, OnInit } from '@angular/core';
     <div>
       <h2>Class Binding</h2>
       <p class="text-success">Codevolution</p>
+      <p [class]="successClass">Codevolution</p>
+      <!-- What happens when we use both a class attribute and class binding in the same html element -->
+      <p [class]="text-special" [class]="successClass">Codevolution</p><!-- text will be green but not italic b.c. a regular class attribute becomes a dummy attribute in the presence of class binding -->
+      <!-- apply a class based on an expression that evaluates to be either true/false -->
+      <p [class.text-danger]="hasError">Codevolution</p><!-- class."name of the class that we want to conditionally apply"-->
+      <!-- since hasError=true, this will result in this class having the class text-danger applied to it -->
+      <!-- If you want to conditionally apply multiple classes use ngClass directive -->
+      <p [ngClass]="messageClasses">Codevolution</p>
     </div>
   `,
   styles: [`
@@ -68,7 +76,14 @@ export class TestComponent implements OnInit {
   public isDisabled = true;
 
   // Class Binding
-
+  public successClass = 'text-success';
+  public hasError = false;
+  public isSpecial = true;
+  public messageClasses = {
+    'text-success': !this.hasError, // b.c hasError is false this is true
+    'text-danger': this.hasError, // b.c hasError is false this is false
+    'text-special': this.isSpecial // b.c isSpecial is true this is true
+  }
 
   constructor() { }
 
