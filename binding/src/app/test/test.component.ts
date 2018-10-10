@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-test',
@@ -49,6 +49,92 @@ import { Component, OnInit } from '@angular/core';
       <!-- If you want to conditionally apply multiple classes use ngClass directive -->
       <p [ngClass]="messageClasses">Codevolution</p>
     </div>
+
+    <!-- Style Binding -->
+    <div>
+      <h2>Style Binding</h2>
+      <p [style.color]="'green'">Style Binding</p>
+      <!--<p [style.color]="hasError ? 'red' : 'green'">Style Binding 2</p>-->
+      <p [style.color]="highlightColor">Style Binding 2</p>
+      <!-- style."style attribute -->
+      <p [ngStyle]="titleStyles">Style Binding ng style directive</p>
+    </div>
+
+    <!-- Event Binding -->
+    <div>
+      <h2>Event Binding</h2>
+      <div>
+        <button (click)="onClick($event)">Greet</button>
+      </div>
+      <div>
+        <button (click)="greeting='Welcome JimmiV'">Greet 2</button>
+      </div>
+      {{greeting}}
+    </div>
+
+    <!-- Template Reference Variables -->
+    <div>
+      <h2>Template Reference Variables</h2>
+      <input #myInput type="text"> <!-- # is creating a reference variable followed by a variable name -->
+      <button (click)="logMessage(myInput.value)">Log</button>
+    </div>
+
+    <!-- Two Way Binding -->
+    <!-- It is essential that your model and the view are always in sync otherwise data might not be consistent -->
+    <div>
+      <h2>Two Way Binding</h2>
+      <!-- the [] for property binding, which is data flow from the class to the template -->
+      <!-- the () for event binding, so the data flow from the template to the class -->
+      <!-- there is two way data flow, hence two-way data binding -->
+      <input [(ngModel)]="name2" type="text" placeholder="enter name"> <!-- import FormsModule into app.module.ts to use ngModel -->
+      <p>Two-Way Binding shown here: {{name2}}</p> 
+      <!-- What we want here is that when something is typed in the input box, 
+          we want the property (name2 = '') to be updated with this vaule 
+          and display with interpolation {{}} -->
+    </div>
+
+    <!-- Structure Directives (*ngIf) -->
+    <div>
+      <h2>Structure Directives (*ngIf)</h2>
+      
+      <!-- Another way of *ngIf -->
+      <div *ngIf="displayName; then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock>
+        <h2>Show</h2>
+      </ng-template>
+      <ng-template #elseBlock>
+        <h2>Hidden</h2>
+      </ng-template>
+    </div>
+
+    <!-- Structure Directive (*ngSwitch) -->
+    <div>
+      <h2>Structure Directive (*ngSwitch)</h2>
+      <div [ngSwitch]="color2">
+        <p *ngSwitchCase="'red'">You picked the color red</p>
+        <p *ngSwitchCase="'blue'">You picked the color blue</p>
+        <p *ngSwitchCase="'green'">You picked the color green</p>
+        <p *ngSwitchDefault>Pick Again</p>
+      </div>
+    </div>
+
+    <!-- Structure Directive (*ngFor) -->
+    <div>
+      <h2>Structure Directive (*ngFor)</h2>
+      <div *ngFor="let color of colors; index as i; first as f; last as l; odd as o; even as e">
+      <p>{{i}} {{color}} {{f}} {{l}} {{o}} {{e}}</p>
+      </div>
+    </div>
+
+    <!-- Component Interaction -->
+    <div>
+      <h2>Component Interaction</h2>
+      <div>
+      <!-- <p>{{"Hello " + parentData}}</p>-->
+        <p>{{"Hello " + name3}}</p>
+        <button (click)="fireEvent()">Send Event</button>
+      </div>
+    </div>
   `,
   styles: [`
     .text-success {
@@ -85,6 +171,35 @@ export class TestComponent implements OnInit {
     'text-special': this.isSpecial // b.c isSpecial is true this is true
   }
 
+  // Style Binding
+  public highlightColor = 'orange';
+  public titleStyles = {
+    color: 'blue',
+    fontStyle: 'italic' // no snake-case only camelCase
+  }
+
+  // Event Binding
+  public greeting = '';
+
+  // Two Way Binding 
+  public name2 = '';
+
+  // Structure Directives (*ngIf)
+  displayName = true;
+  // displayName = false; Uncomment this to see "Name is hidden"
+
+  // Structure Directives (*ngSwitch)
+  public color2 = 'blue';
+
+  // Structure Directives (*ngFor)
+  public colors = ['red', 'blue', 'green', 'yellow'];
+
+  // Component Interaction
+  // @Input() public parentData;
+  // add component interaction to app.component.ts file
+  @Input('parentData') public name3; // import Input from @angular/core, input is the parent sending data to the child
+  @Output() public childEvent = new EventEmitter(); // import Output & EventEmitter from @angular/core, output is the child sending data to the parent 
+
   constructor() { }
 
   ngOnInit() {
@@ -94,6 +209,22 @@ export class TestComponent implements OnInit {
   // a method defined in the component class
   greetUsers() {
     return 'Hello ' + this.name;
+  }
+
+  // Event Binding
+  onClick(event) {
+    console.log(event);
+    this.greeting = event.type;
+  }
+
+  // Template Reference Variables
+  logMessage(value) {
+    console.log(value)
+  }
+
+  // Component Interaction
+  fireEvent() {
+    this.childEvent.emit('Hey Codevolution Childevent');
   }
 
 }

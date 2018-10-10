@@ -44,3 +44,16 @@
     - Properties = define by DOM (Document Object Model)
     - Attribute initialize DOM properties and then they are done. Attribute values cannot change once they    are initialized
     - Properties values however can change
+
+## Structure Directives
+    - Add or remove HTML elements
+        - *ngIf = contitionally render HTML elements
+        - *ngSwitch = contitionally render HTML elements
+        - *ngFor = render a list of HTML elements
+
+## Component Interaction
+    - Parent = AppComponent
+    - Child = TestComponent
+        - Using the @Input() decorator the child can accept input from the parent
+        - Using the @Output() decorator the child can send out events to the parent
+
