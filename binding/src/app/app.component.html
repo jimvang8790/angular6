@@ -3,11 +3,10 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <h2>Child Event here: {{message}}</h2>
-  <!-- this is for input event only-->
-  <!-- <app-test [parentData]="name3"></app-test> -->
-  <!-- this is for input&output event -->
-  <app-test (childEvent)="message=$event" [parentData]="name3"></app-test> 
-  <!-- The $event is referecing the 'Hey Codevolution Childevent' in test.component.ts -->
+  <!-- In test.component.ts if selector is a class, then we can do the following -->
+  <!-- <div class=".app-test"></div> -->
+  <!-- if selector is in brackets, then we can do the following -->
+  <!-- <div app-test>/<div> -->
+    <app-test></app-test>
 </div>
 
