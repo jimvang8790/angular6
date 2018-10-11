@@ -57,3 +57,45 @@
         - Using the @Input() decorator the child can accept input from the parent
         - Using the @Output() decorator the child can send out events to the parent
 
+## Service
+    - A Service is a class with specific purpose
+    - Why Service?
+        1) Share data between multiple components
+        2) Implement spplication logic
+        3) External Interaction 
+    - Name convention
+        - .service.ts
+
+## Dependency Injection
+    - Code without DI - drawback
+    - DI as a design
+    - DI is a coding pattern in which a class receives its dependencies from external sources rather than       creating them itself
+    - DI as a framework
+        1) Define the EmployeeService class
+        2) Register with injector
+        3) Declare as dependency in EmpDetail
+
+## Observables
+    - A sequence of items that arrive asynchronously over time
+    - HTTP call - single item
+    - Single item (not a sequence) - HTTP response 
+
+
+## HTTP, Observables, and RxJS
+    1) HTTP Get request from EmpService
+    2) Receive the observable and cast it into an employee array
+    3) Subscribe to the observable from EmpList and EmpDetail
+    4) Assign the employee array to a local variable
+
+    - RxJS
+        - Reactive Extensions for Javascript
+        - External library to work with Observables
+
+
+## Routing in Angular
+    0) $ng new routing-demo - -route
+        the - -route is what creates the router
+    1) Generate a project with routing option
+    2) Generate departmentList and employeeList components
+    3) Configure the routes
+    4) Add buttons and use directives to navigate pages
