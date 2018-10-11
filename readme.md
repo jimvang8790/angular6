@@ -20,8 +20,8 @@
     - Upgrade twice a year
     - Semantic Versioning
         - ex: version 1.2.3 => version major.minor.fix(patch)
-            - major = increases when there are any break in the functionalities and              major number increases twice a year 
-            - minor = increases when there are added features that don't break any                functionality
+            - major = increases when there are any break in the functionalities and major number increases twice a year 
+            - minor = increases when there are added features that don't break any functionality
             - fix(patch) = increases anything there is a bug fix or a patch
 
 ## Architecture Summary
