@@ -22,7 +22,12 @@ export class EmployeeListComponent implements OnInit {
   // after declare employeeService, make use of the service instance and fetch the employee data that goes inside the ng on it life cycle hook
   // ngOnInit hooks gets called once the component has been initialized
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
+    // the 3rd step of http 
+    // we are going to call the getEmployees() method and the subscribe to the observable so remove the assignment this.employees = 
+    // now instead we are going to subscribe to the observable returned by the getEmployee() 
+    // do the same with employee-detail.component.ts file
+    this._employeeService.getEmployees()
+        .subscribe(data => this.employees = data); 
   }
 
 }
